@@ -12,14 +12,15 @@ export default function Header() {
 
     return (
 
-        <header className="w-full flex justify-between">
+        <header className="w-full flex justify-between items-center">
 
             <div>
                 <img src={logo}
                     alt="Weather App Logo"
+                    className="w-36"
                 />
             </div>
-            <div className="flex flex-col items-end">
+            <div className="flex flex-col items-end relative">
                 <button className="bg-(--neutral-800) flex px-3 py-2 rounded-lg gap-2"
                     onClick={() => setAppearance(!appearance)}
                 >
@@ -27,7 +28,7 @@ export default function Header() {
                     Units
                     <img src={iconDropDown} />
                 </button>
-                <ul className={`${appearance ? "flex" : "hidden"} bg-(--neutral-800) p-1 mt-2 rounded-lg w-48 flex flex-col gap-2 border border-(--neutral-700)`}>
+                <ul className={`${appearance ? "flex" : "hidden"} absolute top-10 bg-(--neutral-800) p-1 mt-2 rounded-lg w-48 flex flex-col gap-2 border border-(--neutral-700)`}>
                     <li className="px-3 py-2">Switch to Imperial</li>
                     <li className="px-3 text-(--neutral-300) text-xs">Temperature</li>
                     <li>
