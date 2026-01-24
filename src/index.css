@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: "DM-Sans";
+    src:   
+        local("DM-Sans"),
+        url("/src/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Bricolage-Grotesque";
+    src:   
+        local("Bricolage-Grotesque"),
+        url("/src/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf") format("ttf");
+}
+
 :root{
     --neutral-900: hsl(243, 96%, 9%);
     --neutral-800: hsl(243, 27%, 20%);
