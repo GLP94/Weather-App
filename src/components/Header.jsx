@@ -7,24 +7,23 @@ import checkmark from "../assets/icon-checkmark.svg";
 export default function Header({temperature, windSpeed, precipitation, setTemperature, setWindSpeed, setPrecipitation}) {
     
     const [appearance, setAppearance] = useState(false);
-    const [measurement, setMeasurement] = useState(localStorage.getItem("measurement") || "metric");
 
-    let unitName = measurement === "metric" ? "Switch to Imperial" : "Switch to Metric";
+    let isMetric = temperature === "celsius"
+                    && windSpeed === "kmh"
+                    && precipitation === "mm";
+
+    let unitName = isMetric ? "Switch to Imperial" : "Switch to Metric";
 
     const handleUnit = () => {
-        if (measurement === "imperial"){
-            setMeasurement("metric");
-            setTemperature("celsius");
-            setWindSpeed("km/h");
-            setPrecipitation("mm");
-            localStorage.setItem("measurement", "metric");
-        }
-        else if (measurement === "metric"){
-            setMeasurement("imperial");
+        if (isMetric){
             setTemperature("fahrenheit");
             setWindSpeed("mph");
             setPrecipitation("in");
-            localStorage.setItem("measurement", "imperial");
+        }
+        else{
+            setTemperature("celsius");
+            setWindSpeed("kmh");
+            setPrecipitation("mm");
         }
     }
 
@@ -40,13 +39,13 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
             </div>
             <div className="flex flex-col items-end relative">
                 <button className="bg-(--neutral-800) flex px-3 py-2 rounded-lg gap-2"
-                    onClick={() => setAppearance(prev => !prev)}
+                    onClick={() => {setAppearance(prev => !prev)}}
                 >
                     <img src={iconUnit} />
                     Units
                     <img src={iconDropDown} />
                 </button>
-                <ul className={`${appearance ? "flex" : "hidden"} absolute top-10 bg-(--neutral-800) p-1 mt-2 rounded-lg w-48 flex flex-col gap-2 border border-(--neutral-700)`}>
+                <ul className={`${appearance ? "flex" : "hidden"} z-1 absolute top-10 bg-(--neutral-800) p-1 mt-2 rounded-lg w-48 flex flex-col gap-2 border border-(--neutral-600)`} >
                     <li className="px-3 py-2">
                         <button
                             onClick={handleUnit}
@@ -89,7 +88,7 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                             </label>
                         </form>
                     </li>
-                    <hr></hr>
+                    <hr className="border-(--neutral-600)"></hr>
                     <li className="px-3 text-(--neutral-300) text-xs">Wind Speed</li>
                     <li>
                         <form className="flex flex-col gap-1 px-1">
@@ -99,12 +98,12 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                                     className="appearance-none sr-only"
                                     type="radio"
                                     name="windspeed"
-                                    value="km/h"
-                                    checked={windSpeed === "km/h"}
+                                    value="kmh"
+                                    checked={windSpeed === "kmh"}
                                     onChange={(e) => setWindSpeed(e.target.value)}
                                 >
                                 </input>
-                                {windSpeed === "km/h" && (
+                                {windSpeed === "kmh" && (
                                     <img src={checkmark} />
                                 )}
                             </label>
@@ -125,7 +124,7 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                             </label>
                         </form>
                     </li>
-                    <hr></hr>
+                    <hr className="border-(--neutral-600)"></hr>
                     <li className="px-3 text-(--neutral-300) text-xs">Precipitation</li>
                     <li>
                         <form className="flex flex-col gap-1 px-1">
