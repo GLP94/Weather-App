@@ -27,7 +27,7 @@ export default function Search({setPlace}){
 
     return(
         <section className="relative">
-            <h1 className="my-12 font-(family-name:--DM-Sans) text-6xl text-center font-medium">How's the sky looking today?</h1>
+            <h1 className="my-12 font-[DM-Sans text-6xl text-center font-medium">How's the sky looking today?</h1>
             <form 
                 className="flex flex-col my-4"
                 onSubmit={handleSubmit}
@@ -39,7 +39,7 @@ export default function Search({setPlace}){
                     />
                     <input 
                         id="searchInput"
-                        className="w-full p-3 font-medium"
+                        className="w-full p-3 font-medium text-xl"
                         type="text"
                         value={cityName}
                         onChange={(e) => setCityName(e.target.value)}
@@ -47,7 +47,7 @@ export default function Search({setPlace}){
                     />
                 </div>
                 <button 
-                    className="p-3 bg-(--Blue-500) rounded-lg font-medium"
+                    className="p-3 bg-(--Blue-500) rounded-lg font-medium text-xl"
                     type="submit"
                 >
                     Search
@@ -65,7 +65,7 @@ export default function Search({setPlace}){
                         <li 
                             key={p.id} 
                             className="p-2 hover:bg-(--neutral-700) border border-(--neutral-800) hover:border hover:border-(--neutral-600) active:border active:bg-(--neutral-700) active:border-(--neutral-600) rounded-lg cursor-pointer"
-                            onClick={() => {setPlace(p); setResult(null); setCityName("")}}
+                            onClick={() => {setPlace(p); setResult(null); setCityName(""); console.log(p)}}
                         >
                             {p.name}
                         </li>

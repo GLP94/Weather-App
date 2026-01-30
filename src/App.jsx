@@ -26,8 +26,10 @@ export default function App() {
       let url = "https://api.open-meteo.com/v1/forecast?" 
                 + `&latitude=${latitude}`
                 + `&longitude=${longitude}`
-                + `&hourly=temperature_2m`
-                + `,weather_code`
+                + `&hourly=temperature_2m,weather_code`
+                + `&current=temperature_2m,weather_code,apparent_temperature,wind_speed_10m,relative_humidity_2m,precipitation`
+                + `&forecast_days=7`
+                + `&timezone=auto`
                 + `&temperature_unit=${temperature}`
                 + `&wind_speed_unit=${windSpeed}`
                 + `&precipitation_unit=${precipitation}`
@@ -46,6 +48,8 @@ export default function App() {
 
   }, [precipitation, temperature, windSpeed, place])
 
+    console.log(weather)
+
     return(
       <div className="m-4">
         <Header 
@@ -60,7 +64,7 @@ export default function App() {
           setPlace={setPlace}
         />
         {weather 
-        && <Today weather={weather}>
+        && <Today weather={weather} place={place}>
           </Today>}
       </div>
     )

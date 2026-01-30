@@ -30,7 +30,6 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
     return (
 
         <header className="w-full flex justify-between items-center">
-
             <div>
                 <img src={logo}
                     alt="Weather App Logo"
