@@ -10,6 +10,8 @@ export default function App() {
   const [precipitation, setPrecipitation] = useState(localStorage.getItem("precipitation") || "mm");
   const [place, setPlace] = useState(null);
   const [weather, setWeather] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [noResult, setNoResult] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("temperature", temperature);
@@ -20,9 +22,12 @@ export default function App() {
   useEffect(() => {
 
     if (!place) return;
-      
+
     const fetchWorker = async () => {
       let {latitude, longitude} = place;
+      setIsLoading(true);
+      setWeather(null);
+
       let url = "https://api.open-meteo.com/v1/forecast?" 
                 + `&latitude=${latitude}`
                 + `&longitude=${longitude}`
@@ -42,13 +47,14 @@ export default function App() {
       catch(err){
         console.log(`Error: ${err}`)
       }
+      finally{
+        setIsLoading(false);
+      }
     }
     
     fetchWorker();
 
   }, [precipitation, temperature, windSpeed, place])
-
-    console.log(weather)
 
     return(
       <div className="m-4">
@@ -62,10 +68,17 @@ export default function App() {
         />
         <Search 
           setPlace={setPlace}
+          setNoResult={setNoResult}
+          setWeather={setWeather}
         />
-        {weather 
-        && <Today weather={weather} place={place}>
-          </Today>}
+        {noResult &&
+          <h1 className="text-center mt-8 text-2xl">No search result found!</h1>
+        }
+        {weather &&
+          <Today weather={weather} place={place} isLoading={isLoading}>
+            
+          </Today>
+        }
       </div>
     )
 }

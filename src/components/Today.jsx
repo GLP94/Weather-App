@@ -10,7 +10,7 @@ import partlyCloudy from "../assets/icon-partly-cloudy.webp"
 import overcast from "../assets/icon-overcast.webp"
 import fog from "../assets/icon-fog.webp"
 
-export default function Today({ place, weather }) {
+export default function Today({ place, weather, isLoading }) {
 
     const [bgImage, setBgImage] = useState(todaySmall);
 
@@ -39,19 +39,18 @@ export default function Today({ place, weather }) {
     const weatherIcon = icons[iconName];
 
     return (
-
-        <div className="bg-cover bg-center bg-no-repeat w-full flex justify-center text-center flex-col p-4 font-[DM-Sans] rounded-4xl"
+        <section className="bg-cover bg-center bg-no-repeat w-full flex justify-center text-center flex-col p-4 font-[DM-Sans] rounded-4xl"
             style={{ backgroundImage: `url(${bgImage})` }}
         >
             <h1 className="text-4xl mt-4">{`${place.name}, ${place.country}`}</h1>
             <span className="text-xl mt-4 text-(--neutral-200)">{new Date(weather.current.time).toLocaleString('en-US', {weekday: "long", month: "short", day: "numeric", year: "numeric"})}</span>
             <div className="flex justify-center items-center content-center my-6">
                 <img className="w-32" src={weatherIcon}></img>
-                <span className="text-8xl italic ml-4">
+                <span className="text-7xl italic ml-4">
                     {`${weather.current.temperature_2m.toFixed(0)}°`}
                 </span>
             </div>
-        </div>
+        </section>
     )
 
 

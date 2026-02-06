@@ -37,17 +37,22 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                 />
             </div>
             <div className="flex flex-col items-end relative">
-                <button className="bg-(--neutral-800) flex px-3 py-2 rounded-lg gap-2"
+                <button className="bg-(--neutral-800) flex px-3 py-2 rounded-lg gap-2 focus:outline-2 focus:outline-offset-3 focus:outline-white hover:bg-(--neutral-700)"
                     onClick={() => {setAppearance(prev => !prev)}}
                 >
                     <img src={iconUnit} />
                     Units
                     <img src={iconDropDown} />
                 </button>
-                <ul className={`${appearance ? "flex" : "hidden"} z-1 absolute top-10 bg-(--neutral-800) p-1 mt-2 rounded-lg w-48 flex flex-col gap-2 border border-(--neutral-600)`} >
-                    <li className="px-3 py-2">
+                <ul 
+                    className={`${appearance ? "flex" : "hidden"} z-2 absolute top-10 bg-(--neutral-800) p-1 mt-2 rounded-lg w-48 flex flex-col gap-2 border border-(--neutral-600)`} 
+                    aria-expanded={appearance}
+                >
+                    <li className="p-1">
                         <button
+                            className="focus:outline-1 focus:outline-offset-3 focus:outline-white w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                             onClick={handleUnit}
+                            onBlur={() => {setAppearance(prev => !prev)}}
                         >
                             {unitName}
                         </button>
@@ -62,6 +67,7 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                                     type="radio"
                                     name="temperature"
                                     value="celsius"
+                                    tabIndex="-1"
                                     checked={temperature === "celsius"}
                                     onChange={(e) => setTemperature(e.target.value)}
                                 >
@@ -77,6 +83,7 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                                     type="radio"
                                     name="temperature"
                                     value="fahrenheit"
+                                    tabIndex="-1"
                                     checked={temperature === "fahrenheit"}
                                     onChange={(e) => setTemperature(e.target.value)}
                                 >
@@ -98,6 +105,7 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                                     type="radio"
                                     name="windspeed"
                                     value="kmh"
+                                    tabIndex="-1"
                                     checked={windSpeed === "kmh"}
                                     onChange={(e) => setWindSpeed(e.target.value)}
                                 >
@@ -113,6 +121,7 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                                     type="radio"
                                     name="windspeed"
                                     value="mph"
+                                    tabIndex="-1"
                                     checked={windSpeed === "mph"}
                                     onChange={(e) => setWindSpeed(e.target.value)}
                                 >
@@ -134,6 +143,7 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                                     type="radio"
                                     name="precipitation"
                                     value="mm"
+                                    tabIndex="-1"
                                     checked={precipitation === "mm"}
                                     onChange={(e) => setPrecipitation(e.target.value)}
                                 >
@@ -149,6 +159,7 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                                     type="radio"
                                     name="precipitation"
                                     value="in"
+                                    tabIndex="-1"
                                     checked={precipitation === "in"}
                                     onChange={(e) => setPrecipitation(e.target.value)}
                                 >
