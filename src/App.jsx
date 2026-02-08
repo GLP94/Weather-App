@@ -42,6 +42,7 @@ export default function App() {
       try{
         let response = await fetch(url)
         let data = await response.json();
+        console.log(data);
         setWeather(data);
       }
       catch(err){
@@ -75,8 +76,13 @@ export default function App() {
           <h1 className="text-center mt-8 text-2xl">No search result found!</h1>
         }
         {weather &&
-          <Today weather={weather} place={place} isLoading={isLoading}>
-            
+          <Today 
+          weather={weather} 
+          place={place} 
+          isLoading={isLoading}
+          windSpeed={windSpeed}
+          precipitation={precipitation}
+          >
           </Today>
         }
       </div>

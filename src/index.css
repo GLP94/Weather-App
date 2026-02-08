@@ -35,11 +35,37 @@
     animation: spin 1s linear infinite;
 }
 
+.bounce{
+    animation: bounce 1s infinite;
+}
+
+.delay100{
+    animation-delay: 0.1s;
+}
+
+.delay300{
+    animation-delay: 0.3s;
+}
+
+.delay600{
+    animation-delay: 0.6s;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
     }
     100%{
         transform: rotate(360deg);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+
+    50%{
+        transform: translateY(-100px)
     }
 }
