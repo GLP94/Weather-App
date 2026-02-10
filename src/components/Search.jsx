@@ -47,7 +47,7 @@ export default function Search({setPlace, setNoResult, setWeather}){
     }
 
     return(
-        <section className="relative font-[DM-Sans]">
+        <section className="relative">
             {error && 
                 <section className="flex flex-col text-center items-center mt-16">
                     <img 
