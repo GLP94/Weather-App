@@ -11,7 +11,7 @@
     font-family: "Bricolage-Grotesque";
     src:   
         local("Bricolage-Grotesque"),
-        url("/src/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf") format("truetype");
+        url("/src/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf") format("truetype");
 }
 
 :root{
@@ -29,6 +29,14 @@
 
 *, ::before, ::after{
     box-sizing: border-box;
+}
+
+body{
+    font-family: "DM-Sans", "sans-serif";
+}
+
+h1{
+    font-family: "Bricolage-Grotesque", "sans-serif" !important
 }
 
 .spin{

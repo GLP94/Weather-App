@@ -17,7 +17,7 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
 
     return (
         <section>
-            <div className={`${isLoading ? 'bg-(--neutral-700)' : ""} bg-auto bg-center bg-no-repeat flex justify-center text-center flex-col p-4 font-[DM-Sans] rounded-4xl min-h-75`}
+            <div className={`${isLoading ? 'bg-(--neutral-700)' : ""} bg-auto bg-center bg-no-repeat flex justify-center text-center flex-col my-6 font-[DM-Sans] rounded-4xl min-h-65`}
                 style={{ backgroundImage: isLoading ? "" : `url(${bgImage})`}}
             >
                 {isLoading &&

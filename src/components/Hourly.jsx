@@ -33,8 +33,8 @@ export default function Hourly({weather, getWeatherIcon}){
     return(
         <section className="bg-(--neutral-800) rounded-2xl my-4 pb-4">
             <div className="flex justify-between items-center px-4 pt-6 pb-2">
-                <h2 className="text-xl font-[600]">Hourly Forecast</h2>
-                <button className="font-[400] py-2 px-4 flex justify-between items-center bg-(--neutral-600) rounded-lg border border-(--neutral-600) w-30">Tuesday <img className="h-4 w-4" src={iconDropDown} /></button>
+                <h2 className="text-xl font-semibold">Hourly Forecast</h2>
+                <button className="font-normal py-2 px-4 flex justify-between items-center bg-(--neutral-600) rounded-lg border border-(--neutral-600) w-30">Tuesday <img className="h-4 w-4" src={iconDropDown} /></button>
             </div>
             <div className="overflow-y-auto h-180 px-4">
                 {extr.map((h, i) => (
@@ -42,9 +42,9 @@ export default function Hourly({weather, getWeatherIcon}){
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">
                                 <img src={getWeatherIcon(a[i])} alt="Weather icon" className="w-12 h-auto mr-4"></img>
-                                <span className=" text-2xl">{new Date(h).toLocaleTimeString([], {hour: "numeric", hour12: true})}</span>
+                                <span className=" text-xl">{new Date(h).toLocaleTimeString([], {hour: "numeric", hour12: true})}</span>
                             </div>
-                            <span className="font-[500] text-xl">{b[i].toFixed(0)}°</span>
+                            <span className="font-medium text-xl">{b[i].toFixed(0)}°</span>
                         </div>
                     </div>
                 ))}
