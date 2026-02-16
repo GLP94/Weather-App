@@ -77,7 +77,7 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
                         <span>-</span>
                     }
                     {!isLoading &&
-                        <p className="text-3xl mt-4">{`${weather.current.precipitation} ${precipitation}`}</p>
+                        <p className="text-3xl mt-4">{`${weather.current.precipitation} ${precipitation === "inch" ? "in" : "mm"}`}</p>
                     }
                 </div>
             </div>

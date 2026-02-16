@@ -1,5 +1,3 @@
-
-
 export default function Daily({weather, getWeatherIcon}){
 
     let daily = weather.daily.time;
@@ -13,8 +11,8 @@ export default function Daily({weather, getWeatherIcon}){
                 {daily.map((day, i) => (
                     <div key={i} className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-600) text-center">
                         <h3>{new Date(day).toLocaleString('en-US', {weekday: "short"})}</h3>
-                        <img src={getWeatherIcon(weather.daily.weather_code[i])} alt="Weather icon"></img>
-                        <div className="flex justify-between">
+                        <img src={getWeatherIcon(weather.daily.weather_code[i])} alt="Weather icon" className="w-24 h-auto"></img>
+                        <div className="flex justify-between items-center">
                             <span>{weather.daily.temperature_2m_max[i].toFixed(0)}°</span>
                             <span className="text-(--neutral-300)">{weather.daily.temperature_2m_min[i].toFixed(0)}°</span>
                         </div>

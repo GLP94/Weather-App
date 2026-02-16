@@ -18,7 +18,7 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
         if (isMetric){
             setTemperature("fahrenheit");
             setWindSpeed("mph");
-            setPrecipitation("in");
+            setPrecipitation("inch");
         }
         else{
             setTemperature("celsius");
@@ -158,13 +158,13 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                                     className="appearance-none sr-only"
                                     type="radio"
                                     name="precipitation"
-                                    value="in"
+                                    value="inch"
                                     tabIndex="-1"
-                                    checked={precipitation === "in"}
+                                    checked={precipitation === "inch"}
                                     onChange={(e) => setPrecipitation(e.target.value)}
                                 >
                                 </input>
-                                {precipitation === "in" && (
+                                {precipitation === "inch" && (
                                     <img src={checkmark} />
                                 )}
                             </label>

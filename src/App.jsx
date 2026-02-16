@@ -3,6 +3,7 @@ import Header from "./components/Header"
 import Search from "./components/Search"
 import Today from "./components/Today"
 import Daily from "./components/Daily"
+import Hourly from "./components/Hourly"
 import sunny from "./assets/icon-sunny.webp"
 import storm from "./assets/icon-storm.webp"
 import snow from "./assets/icon-snow.webp"
@@ -116,8 +117,12 @@ export default function App() {
               isLoading={isLoading}
               getWeatherIcon={getWeatherIcon}
             >
-
             </Daily>
+            <Hourly
+              weather={weather}
+              getWeatherIcon={getWeatherIcon}
+            >
+            </Hourly>
           </>
         }
       </div>
