@@ -13,6 +13,10 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
         }
 
         handleResizing();
+
+        window.addEventListener("resize", handleResizing);
+
+        return () => {window.removeEventListener("resize", handleResizing)}
     }, [])
 
     return (
@@ -44,7 +48,7 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
                 }
             </div>
             <div className="grid grid-cols-2 gap-4 my-4">
-                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-600)">
+                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700)">
                     <h3>Feels like</h3>
                     {isLoading && 
                         <span>-</span>
@@ -53,7 +57,7 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
                         <p className="text-3xl mt-4">{`${weather.current.apparent_temperature.toFixed(0)}°`}</p>
                     }
                 </div>
-                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-600)">
+                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700)">
                     <h3>Humidity</h3>
                     {isLoading && 
                         <span>-</span>
@@ -62,7 +66,7 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
                         <p className="text-3xl mt-4">{`${weather.current.relative_humidity_2m}%`}</p>
                     }
                 </div>
-                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-600)">
+                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700)">
                     <h3>Wind</h3>
                     {isLoading && 
                         <span>-</span>
@@ -71,7 +75,7 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
                         <p className="text-3xl mt-4">{`${weather.current.wind_speed_10m} ${windSpeed}`}</p>
                     }
                 </div>
-                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-600)">
+                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700)">
                     <h3>Precipitation</h3>
                     {isLoading && 
                         <span>-</span>

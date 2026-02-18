@@ -31,6 +31,19 @@
     box-sizing: border-box;
 }
 
+.scrollbar{
+
+    &::-webkit-scrollbar{
+        background-color: var(--neutral-800);
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background-color: var(--neutral-700);
+        border: 2px solid var(--neutral-600);
+    }
+}
+
 body{
     font-family: "DM-Sans", "sans-serif";
 }

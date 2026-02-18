@@ -85,7 +85,7 @@ export default function App() {
   }
 
     return(
-      <div className="flex justify-center">
+      <div className="md:flex justify-center">
         <div className="m-4 font-[DM-Sans] w-[320px]">
           <Header 
             temperature={temperature} 

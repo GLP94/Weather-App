@@ -9,7 +9,7 @@ export default function Daily({weather, getWeatherIcon}){
             <h2 className="mb-4 font-medium text-xl">Daily Forecast</h2>
             <div className="grid grid-cols-3 gap-3">
                 {daily.map((day, i) => (
-                    <div key={i} className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-600) text-center">
+                    <div key={i} className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700) text-center">
                         <h3>{new Date(day).toLocaleString('en-US', {weekday: "short"})}</h3>
                         <img src={getWeatherIcon(weather.daily.weather_code[i])} alt="Weather icon" className="w-24 h-auto"></img>
                         <div className="flex justify-between items-center">
