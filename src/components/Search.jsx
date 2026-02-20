@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import SearchIcon from "../assets/icon-search.svg"
 import LoadingIcon from "../assets/icon-loading.svg"
 import errorIcon from "../assets/icon-error.svg"
@@ -12,6 +12,18 @@ export default function Search({setPlace, setNoResult, setWeather}){
     const [cityName, setCityName] = useState("");
     const [error, setError] = useState(false);
     
+    let menuRef = useRef(null);
+
+    useEffect(() => {
+        const handleClick = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)){
+                setResult(null);
+            }
+        }
+
+        document.addEventListener("click", handleClick);
+        return () => document.removeEventListener("click", handleClick)
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,7 +35,6 @@ export default function Search({setPlace, setNoResult, setWeather}){
             const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=5&language=en&format=json`);
             if (!response.ok) throw new Error("Server Error!")
             let data = await response.json();
-            console.log(data)
             setResult(data.results || null);
             if (!data.results){
                 setNoResult(true)
@@ -33,7 +44,7 @@ export default function Search({setPlace, setNoResult, setWeather}){
             }
         }
         catch(err){
-            console.log(err);
+            console.error(err);
             if (err.name === "TypeError") setError(true);
             else if (err.message === "Server Error!") setError(true);
         }
@@ -72,10 +83,10 @@ export default function Search({setPlace, setNoResult, setWeather}){
             <>
                 <h1 className="my-12 text-6xl text-center font-medium">How's the sky looking today?</h1>
                 <form 
-                    className="flex flex-col my-2"
+                    className="flex flex-col my-2 w-full md:flex-row md:justify-center md:items-center gap-4"
                     onSubmit={handleSubmit}
                 >
-                    <label className="my-2 bg-(--neutral-800) flex rounded-lg focus-within:outline-2 focus-within:outline-offset-3 hover:bg-(--neutral-700)">
+                    <label className="my-2 bg-(--neutral-800) flex rounded-lg focus-within:outline-2 focus-within:outline-offset-3 hover:bg-(--neutral-700) max-w-140 w-full">
                         <img 
                             src={SearchIcon}
                             className="pl-6"
@@ -84,7 +95,7 @@ export default function Search({setPlace, setNoResult, setWeather}){
                         />
                         <input 
                             id="searchInput"
-                            className="w-full p-3 font-medium text-xl focus:border-none focus:outline-none"
+                            className="p-3 font-medium text-xl focus:border-none focus:outline-none"
                             type="text"
                             value={cityName}
                             onChange={(e) => setCityName(e.target.value)}
@@ -92,7 +103,7 @@ export default function Search({setPlace, setNoResult, setWeather}){
                         />
                     </label>
                     <button 
-                        className="p-3 bg-(--Blue-500) rounded-lg font-medium text-xl focus:outline-2 focus:outline-offset-3 focus:outline-(--Blue-500) hover:bg-(--Blue-700) "
+                        className="py-3 px-4 bg-(--Blue-500) rounded-lg font-medium text-xl focus:outline-2 focus:outline-offset-3 focus:outline-(--Blue-500) hover:bg-(--Blue-700) "
                         type="submit"
                     >
                         Search
@@ -107,19 +118,23 @@ export default function Search({setPlace, setNoResult, setWeather}){
                 </p>
             </div>}
             {Array.isArray(result) && result.length > 0 &&
-            <div className="w-full bg-(--neutral-800) p-2 rounded-lg absolute border-(--neutral-700) z-1">
-                <ul>
-                    {result.map(p => (
-                        <li 
-                            key={p.id} 
-                            className="p-2 hover:bg-(--neutral-700) border border-(--neutral-800) hover:border hover:border-(--neutral-600) active:border active:bg-(--neutral-700) active:border-(--neutral-600) rounded-lg cursor-pointer"
-                            onClick={() => {setPlace(p); setResult(null); setCityName(""); console.log(p)}}
-                        >
-                            {p.name}
-                        </li>
-                    ))}
-                </ul>
-            </div>}
+                <div 
+                    className="w-full bg-(--neutral-800) p-2 rounded-lg absolute border-(--neutral-700) z-1"
+                    ref={menuRef}
+                >
+                    <ul>
+                        {result.map(p => (
+                            <li 
+                                key={p.id} 
+                                className="p-2 hover:bg-(--neutral-700) border border-(--neutral-800) hover:border hover:border-(--neutral-600) active:border active:bg-(--neutral-700) active:border-(--neutral-600) rounded-lg cursor-pointer"
+                                onClick={() => {setPlace(p); setResult(null); setCityName("")}}
+                                tabIndex="0"
+                            >
+                                {p.name}
+                            </li>
+                        ))}
+                    </ul>
+                </div>}
         </section>
     )
 }

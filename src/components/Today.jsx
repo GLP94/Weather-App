@@ -1,28 +1,9 @@
-import { useState, useEffect } from "react"
-
-import todayLarge from "../assets/bg-today-large.svg"
-import todaySmall from "../assets/bg-today-small.svg"
-
 export default function Today({ place, weather, isLoading, windSpeed, precipitation, getWeatherIcon}) {
-
-    const [bgImage, setBgImage] = useState(todaySmall);
-
-    useEffect(() => {
-        const handleResizing = () => {
-            setBgImage(window.innerWidth <= 375 ? todaySmall : todayLarge);
-        }
-
-        handleResizing();
-
-        window.addEventListener("resize", handleResizing);
-
-        return () => {window.removeEventListener("resize", handleResizing)}
-    }, [])
 
     return (
         <section>
-            <div className={`${isLoading ? 'bg-(--neutral-700)' : ""} bg-auto bg-center bg-no-repeat flex justify-center text-center flex-col my-6 font-[DM-Sans] rounded-4xl min-h-65`}
-                style={{ backgroundImage: isLoading ? "" : `url(${bgImage})`}}
+            <div 
+                className={`${isLoading ? 'bg-(--neutral-700)' : "bg"} flex justify-center text-center flex-col my-4 font-[DM-Sans] rounded-4xl min-h-65`}
             >
                 {isLoading &&
                     <div className="flex flex-col items-center">
@@ -47,41 +28,41 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
                     </>
                 }
             </div>
-            <div className="grid grid-cols-2 gap-4 my-4">
-                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700)">
+            <div className="grid grid-cols-2 gap-4 my-4 lg:flex md:justify-between">
+                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700) w-full">
                     <h3>Feels like</h3>
                     {isLoading && 
                         <span>-</span>
                     }
                     {!isLoading &&
-                        <p className="text-3xl mt-4">{`${weather.current.apparent_temperature.toFixed(0)}°`}</p>
+                        <p className="text-2xl mt-4">{`${weather.current.apparent_temperature.toFixed(0)}°`}</p>
                     }
                 </div>
-                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700)">
+                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700) w-full">
                     <h3>Humidity</h3>
                     {isLoading && 
                         <span>-</span>
                     }
                     {!isLoading &&
-                        <p className="text-3xl mt-4">{`${weather.current.relative_humidity_2m}%`}</p>
+                        <p className="text-2xl mt-4">{`${weather.current.relative_humidity_2m}%`}</p>
                     }
                 </div>
-                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700)">
+                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700) w-full">
                     <h3>Wind</h3>
                     {isLoading && 
                         <span>-</span>
                     }
                     {!isLoading &&
-                        <p className="text-3xl mt-4">{`${weather.current.wind_speed_10m} ${windSpeed}`}</p>
+                        <p className="text-2xl mt-4">{`${weather.current.wind_speed_10m} ${windSpeed}`}</p>
                     }
                 </div>
-                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700)">
+                <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700) w-full">
                     <h3>Precipitation</h3>
                     {isLoading && 
                         <span>-</span>
                     }
                     {!isLoading &&
-                        <p className="text-3xl mt-4">{`${weather.current.precipitation} ${precipitation === "inch" ? "in" : "mm"}`}</p>
+                        <p className="text-2xl mt-4">{`${weather.current.precipitation} ${precipitation === "inch" ? "in" : "mm"}`}</p>
                     }
                 </div>
             </div>

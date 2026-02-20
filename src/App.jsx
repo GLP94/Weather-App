@@ -33,49 +33,48 @@ export default function App() {
     if (!place) return;
 
     const fetchWorker = async () => {
-      let {latitude, longitude} = place;
+      let { latitude, longitude } = place;
       setIsLoading(true);
       setWeather(null);
 
-      let url = "https://api.open-meteo.com/v1/forecast?" 
-                + `&latitude=${latitude}`
-                + `&longitude=${longitude}`
-                + `&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m`
-                + `&hourly=temperature_2m,weather_code`
-                + `&current=temperature_2m,weather_code,apparent_temperature,wind_speed_10m,relative_humidity_2m,precipitation`
-                + `&forecast_days=7`
-                + `&timezone=auto`
-                + `&temperature_unit=${temperature}`
-                + `&wind_speed_unit=${windSpeed}`
-                + `&precipitation_unit=${precipitation}`
+      let url = "https://api.open-meteo.com/v1/forecast?"
+        + `&latitude=${latitude}`
+        + `&longitude=${longitude}`
+        + `&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m`
+        + `&hourly=temperature_2m,weather_code`
+        + `&current=temperature_2m,weather_code,apparent_temperature,wind_speed_10m,relative_humidity_2m,precipitation`
+        + `&forecast_days=7`
+        + `&timezone=auto`
+        + `&temperature_unit=${temperature}`
+        + `&wind_speed_unit=${windSpeed}`
+        + `&precipitation_unit=${precipitation}`
 
-      try{
+      try {
         let response = await fetch(url)
         let data = await response.json();
-        console.log(data);
         setWeather(data);
       }
-      catch(err){
-        console.log(`Error: ${err}`)
+      catch (err) {
+        console.error(`Error: ${err}`)
       }
-      finally{
+      finally {
         setIsLoading(false);
       }
     }
-    
+
     fetchWorker();
 
   }, [precipitation, temperature, windSpeed, place])
 
-  function getWeatherIcon(code){
+  function getWeatherIcon(code) {
     const values = {
-        sunny: [0],
-        partlyCloudy: [1, 2],
-        overcast: [3],
-        fog: [45, 48],
-        rain: [56, 57, 61, 63, 65, 66, 67, 80, 81, 82],
-        snow: [71, 73, 75, 77, 85, 86],
-        storm: [95, 96, 99]
+      sunny: [0],
+      partlyCloudy: [1, 2],
+      overcast: [3],
+      fog: [45, 48],
+      rain: [56, 57, 61, 63, 65, 66, 67, 80, 81, 82],
+      snow: [71, 73, 75, 77, 85, 86],
+      storm: [95, 96, 99]
     };
 
     const icons = { sunny, partlyCloudy, overcast, fog, rain, snow, storm };
@@ -84,49 +83,51 @@ export default function App() {
     return icons[iconName];
   }
 
-    return(
-      <div className="md:flex justify-center">
-        <div className="m-4 font-[DM-Sans] w-[320px]">
-          <Header 
-            temperature={temperature} 
-            windSpeed={windSpeed} 
-            precipitation={precipitation}
-            setTemperature={setTemperature}
-            setWindSpeed={setWindSpeed}
-            setPrecipitation={setPrecipitation}
-          />
-          <Search 
-            setPlace={setPlace}
-            setNoResult={setNoResult}
-            setWeather={setWeather}
-          />
-          {noResult &&
-            <h1 className="text-center mt-8 text-2xl">No search result found!</h1>
-          }
-          {weather &&
-            <>
-              <Today 
-                weather={weather} 
-                getWeatherIcon={getWeatherIcon}
-                place={place} 
-                windSpeed={windSpeed}
-                precipitation={precipitation}
-              >
-              </Today>
-              <Daily
-                weather={weather}
-                isLoading={isLoading}
-                getWeatherIcon={getWeatherIcon}
-              >
-              </Daily>
-              <Hourly
-                weather={weather}
-                getWeatherIcon={getWeatherIcon}
-              >
-              </Hourly>
-            </>
-          }
+  return (
+    <div className="m-4 md:m-12 xl:mx-32 font-[DM-Sans]">
+      <Header
+        temperature={temperature}
+        windSpeed={windSpeed}
+        precipitation={precipitation}
+        setTemperature={setTemperature}
+        setWindSpeed={setWindSpeed}
+        setPrecipitation={setPrecipitation}
+      />
+      <Search
+        setPlace={setPlace}
+        setNoResult={setNoResult}
+        setWeather={setWeather}
+      />
+      {noResult &&
+        <h1 className="text-center mt-8 text-2xl">No search result found!</h1>
+      }
+      {weather &&
+        <div className="md:grid md:grid-cols-3 gap-4">
+          <div className="md:col-span-2">
+            <Today
+              weather={weather}
+              getWeatherIcon={getWeatherIcon}
+              place={place}
+              windSpeed={windSpeed}
+              precipitation={precipitation}
+            >
+            </Today>
+            <Daily
+              weather={weather}
+              isLoading={isLoading}
+              getWeatherIcon={getWeatherIcon}
+            >
+            </Daily>
+          </div>
+          <div className="md:col-span-1">
+            <Hourly
+              weather={weather}
+              getWeatherIcon={getWeatherIcon}
+            >
+            </Hourly>
+          </div>
         </div>
-      </div>
-    )
+      }
+    </div>
+  )
 }

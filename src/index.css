@@ -34,7 +34,7 @@
 .scrollbar{
 
     &::-webkit-scrollbar{
-        background-color: var(--neutral-800);
+        background-color: none;
         width: 5px;
     }
 
@@ -70,6 +70,19 @@ h1{
 
 .delay600{
     animation-delay: 0.6s;
+}
+
+.bg{
+    background-image: url("./assets/bg-today-small.svg");
+    background-repeat: no-repeat;
+    background-size:auto;
+    background-position: center;
+}
+
+@media (min-width: 344px) {
+    .bg{
+        background-image: url("./assets/bg-today-large.svg");
+    }
 }
 
 @keyframes spin {

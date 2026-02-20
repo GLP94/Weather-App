@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import logo from "../assets/logo.svg";
 import iconUnit from "../assets/icon-units.svg";
 import iconDropDown from "../assets/icon-dropdown.svg";
@@ -13,6 +13,26 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                     && precipitation === "mm";
 
     let unitName = isMetric ? "Switch to Imperial" : "Switch to Metric";
+
+    let menuRef = useRef(null);
+
+    const handleOnBlur = (event) => {
+        if (menuRef.current && !menuRef.current.contains(event.relatedTarget)){
+            setAppearance(false);
+        }
+    }
+    
+    useEffect(() => {
+        const handleClick = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)){
+                setAppearance(false);
+            }
+        }
+    
+        document.addEventListener("click", handleClick);
+        return () => document.removeEventListener("click", handleClick)
+    }, []);
+    
 
     const handleUnit = () => {
         if (isMetric){
@@ -36,7 +56,10 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                     className="w-36"
                 />
             </div>
-            <div className="flex flex-col items-end relative">
+            <div className="flex flex-col items-end relative"
+                ref={menuRef}
+                onBlur={handleOnBlur}
+            >
                 <button className="bg-(--neutral-800) flex px-3 py-2 rounded-lg gap-2 focus:outline-2 focus:outline-offset-3 focus:outline-white hover:bg-(--neutral-700)"
                     onClick={() => {setAppearance(prev => !prev)}}
                 >
@@ -52,7 +75,6 @@ export default function Header({temperature, windSpeed, precipitation, setTemper
                         <button
                             className="focus:outline-1 focus:outline-offset-3 focus:outline-white w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                             onClick={handleUnit}
-                            onBlur={() => {setAppearance(prev => !prev)}}
                         >
                             {unitName}
                         </button>
