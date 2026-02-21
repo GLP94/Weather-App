@@ -5,7 +5,7 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
             <div 
                 className={`${isLoading ? 'bg-(--neutral-700)' : "bg"} flex justify-center text-center flex-col my-4 font-[DM-Sans] rounded-4xl min-h-65`}
             >
-                {isLoading &&
+                {(isLoading && weather === null) &&
                     <div className="flex flex-col items-center">
                         <div className="flex gap-2 items-end">
                             <div className="bg-white h-3 w-3 rounded-full bounce delay100"></div>
@@ -28,7 +28,7 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
                     </>
                 }
             </div>
-            <div className="grid grid-cols-2 gap-4 my-4 lg:flex md:justify-between">
+            <div className="grid grid-cols-2 gap-4 my-4 md:flex md:justify-between">
                 <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700) w-full">
                     <h3>Feels like</h3>
                     {isLoading && 

@@ -130,17 +130,17 @@ export default function Hourly({weather, getWeatherIcon}){
                 </div>
             </div>
             <div 
-                className="overflow-y-scroll max-h-125 px-4 scrollbar flex flex-col gap-3 pt-2"
+                className="overflow-y-scroll max-h-126 px-4 scrollbar flex flex-col gap-3 pt-2"
                 tabIndex="-1"
             >
                 {hour.map((h, i) => (
-                    <div key={i} className="px-2 -mr-2 bg-(--neutral-700) rounded-lg border border-(--neutral-600)">
+                    <div key={i} className="p-2 -mr-2 bg-(--neutral-700) rounded-lg border border-(--neutral-600)">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">
-                                <img src={getWeatherIcon(code[i])} alt="Weather icon" className="w-12 h-auto mr-2"></img>
+                                <img src={getWeatherIcon(code[i])} alt="Weather icon" className="w-8 h-auto mr-2"></img>
                                 <span className="text-lg">{new Date(h).toLocaleTimeString([], {hour: "numeric", hour12: true})}</span>
                             </div>
-                            <span className="font-medium text-xl">{temp[i].toFixed(0)}°</span>
+                            <span className="font-medium">{temp[i].toFixed(0)}°</span>
                         </div>
                     </div>
                 ))}

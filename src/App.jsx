@@ -84,50 +84,52 @@ export default function App() {
   }
 
   return (
-    <div className="m-4 md:m-12 xl:mx-32 font-[DM-Sans]">
-      <Header
-        temperature={temperature}
-        windSpeed={windSpeed}
-        precipitation={precipitation}
-        setTemperature={setTemperature}
-        setWindSpeed={setWindSpeed}
-        setPrecipitation={setPrecipitation}
-      />
-      <Search
-        setPlace={setPlace}
-        setNoResult={setNoResult}
-        setWeather={setWeather}
-      />
-      {noResult &&
-        <h1 className="text-center mt-8 text-2xl">No search result found!</h1>
-      }
-      {weather &&
-        <div className="md:grid md:grid-cols-3 gap-4">
-          <div className="md:col-span-2">
-            <Today
-              weather={weather}
-              getWeatherIcon={getWeatherIcon}
-              place={place}
-              windSpeed={windSpeed}
-              precipitation={precipitation}
-            >
-            </Today>
-            <Daily
-              weather={weather}
-              isLoading={isLoading}
-              getWeatherIcon={getWeatherIcon}
-            >
-            </Daily>
+    <div className="flex flex-col justify-center items-center">
+      <div className="m-4 lg:my-12 max-w-7xl font-[DM-Sans] flex flex-col md:items-center">
+        <Header
+          temperature={temperature}
+          windSpeed={windSpeed}
+          precipitation={precipitation}
+          setTemperature={setTemperature}
+          setWindSpeed={setWindSpeed}
+          setPrecipitation={setPrecipitation}
+        />
+        <Search
+          setPlace={setPlace}
+          setNoResult={setNoResult}
+          setWeather={setWeather}
+        />
+        {noResult &&
+          <h1 className="text-center mt-8 text-2xl">No search result found!</h1>
+        }
+        {weather &&
+          <div className="md:grid md:grid-cols-3 gap-4">
+            <div className="md:col-span-2">
+              <Today
+                weather={weather}
+                getWeatherIcon={getWeatherIcon}
+                place={place}
+                windSpeed={windSpeed}
+                precipitation={precipitation}
+              >
+              </Today>
+              <Daily
+                weather={weather}
+                isLoading={isLoading}
+                getWeatherIcon={getWeatherIcon}
+              >
+              </Daily>
+            </div>
+            <div className="md:col-span-1">
+              <Hourly
+                weather={weather}
+                getWeatherIcon={getWeatherIcon}
+              >
+              </Hourly>
+            </div>
           </div>
-          <div className="md:col-span-1">
-            <Hourly
-              weather={weather}
-              getWeatherIcon={getWeatherIcon}
-            >
-            </Hourly>
-          </div>
-        </div>
-      }
+        }
+      </div>
     </div>
   )
 }

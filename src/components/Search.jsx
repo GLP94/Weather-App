@@ -58,7 +58,7 @@ export default function Search({setPlace, setNoResult, setWeather}){
     }
 
     return(
-        <section className="relative">
+        <section className="relative md:max-w-200">
             {error && 
                 <section className="flex flex-col text-center items-center mt-16">
                     <img 
@@ -86,7 +86,7 @@ export default function Search({setPlace, setNoResult, setWeather}){
                     className="flex flex-col my-2 w-full md:flex-row md:justify-center md:items-center gap-4"
                     onSubmit={handleSubmit}
                 >
-                    <label className="my-2 bg-(--neutral-800) flex rounded-lg focus-within:outline-2 focus-within:outline-offset-3 hover:bg-(--neutral-700) max-w-140 w-full">
+                    <label className="my-2 bg-(--neutral-800) flex rounded-lg focus-within:outline-2 focus-within:outline-offset-3 hover:bg-(--neutral-700) md:max-w-140 w-full">
                         <img 
                             src={SearchIcon}
                             className="pl-6"
@@ -111,7 +111,7 @@ export default function Search({setPlace, setNoResult, setWeather}){
                 </form>
             </> 
             }
-            {isLoading && <div className="w-full bg-(--neutral-800) p-2 rounded-lg absolute border-(--neutral-700) flex gap-2 z-1 items-center">
+            {isLoading && <div className="w-full bg-(--neutral-800) p-2 rounded-lg absolute border-(--neutral-700) flex gap-2 z-1 items-center md:max-w-140 md:left-12.5">
                 <img src={LoadingIcon} className="spin shrink-0" alt="Loading icon"></img>
                 <p>
                     Search in Progress
@@ -119,7 +119,7 @@ export default function Search({setPlace, setNoResult, setWeather}){
             </div>}
             {Array.isArray(result) && result.length > 0 &&
                 <div 
-                    className="w-full bg-(--neutral-800) p-2 rounded-lg absolute border-(--neutral-700) z-1"
+                    className="w-full bg-(--neutral-800) p-2 rounded-lg absolute border-(--neutral-700) z-1 md:max-w-140 md:left-12.5"
                     ref={menuRef}
                 >
                     <ul>

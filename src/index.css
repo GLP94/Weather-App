@@ -75,7 +75,7 @@ h1{
 .bg{
     background-image: url("./assets/bg-today-small.svg");
     background-repeat: no-repeat;
-    background-size:auto;
+    background-size:cover;
     background-position: center;
 }
 
