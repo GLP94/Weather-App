@@ -57,9 +57,10 @@ export default function App() {
       catch (err) {
         console.error(`Error: ${err}`)
       }
-      finally {
-        setIsLoading(false);
+      finally{
+        setIsLoading(false)
       }
+      
     }
 
     fetchWorker();
@@ -85,7 +86,7 @@ export default function App() {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="m-4 lg:my-12 max-w-7xl font-[DM-Sans] flex flex-col md:items-center">
+      <div className="m-8 max-w-7xl font-[DM-Sans] flex flex-col md:items-center">
         <Header
           temperature={temperature}
           windSpeed={windSpeed}
@@ -103,14 +104,15 @@ export default function App() {
           <h1 className="text-center mt-8 text-2xl">No search result found!</h1>
         }
         {weather &&
-          <div className="md:grid md:grid-cols-3 gap-4">
-            <div className="md:col-span-2">
+          <div className="flex gap-4 flex-col md:flex-row">
+            <div>
               <Today
                 weather={weather}
                 getWeatherIcon={getWeatherIcon}
                 place={place}
                 windSpeed={windSpeed}
                 precipitation={precipitation}
+                isLoading={isLoading}
               >
               </Today>
               <Daily
@@ -120,10 +122,11 @@ export default function App() {
               >
               </Daily>
             </div>
-            <div className="md:col-span-1">
+            <div>
               <Hourly
                 weather={weather}
                 getWeatherIcon={getWeatherIcon}
+                isLoading={isLoading}
               >
               </Hourly>
             </div>

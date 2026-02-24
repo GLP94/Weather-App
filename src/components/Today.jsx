@@ -3,11 +3,11 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
     return (
         <section>
             <div 
-                className={`${isLoading ? 'bg-(--neutral-700)' : "bg"} flex justify-center text-center flex-col my-4 font-[DM-Sans] rounded-4xl min-h-65`}
+                className={`${isLoading ? 'bg-(--neutral-800)' : "bg"} flex justify-center text-center flex-col my-4 font-[DM-Sans] rounded-4xl min-h-65`}
             >
-                {(isLoading && weather === null) &&
+                {isLoading &&
                     <div className="flex flex-col items-center">
-                        <div className="flex gap-2 items-end">
+                        <div className="flex gap-2 items-end mb-2">
                             <div className="bg-white h-3 w-3 rounded-full bounce delay100"></div>
                             <div className="bg-white h-3 w-3 rounded-full bounce delay300"></div>
                             <div className="bg-white h-3 w-3 rounded-full bounce delay600"></div>
@@ -28,11 +28,11 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
                     </>
                 }
             </div>
-            <div className="grid grid-cols-2 gap-4 my-4 md:flex md:justify-between">
+            <div className="grid auto-rows-auto grid-cols-2 gap-4 my-4 md:flex md:justify-between">
                 <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700) w-full">
                     <h3>Feels like</h3>
                     {isLoading && 
-                        <span>-</span>
+                        <span className="inline-block pt-2 text-lg">-</span>
                     }
                     {!isLoading &&
                         <p className="text-2xl mt-4">{`${weather.current.apparent_temperature.toFixed(0)}°`}</p>
@@ -41,7 +41,7 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
                 <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700) w-full">
                     <h3>Humidity</h3>
                     {isLoading && 
-                        <span>-</span>
+                        <span className="inline-block pt-2 text-lg">-</span>
                     }
                     {!isLoading &&
                         <p className="text-2xl mt-4">{`${weather.current.relative_humidity_2m}%`}</p>
@@ -50,7 +50,7 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
                 <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700) w-full">
                     <h3>Wind</h3>
                     {isLoading && 
-                        <span>-</span>
+                        <span className="inline-block pt-2 text-lg">-</span>
                     }
                     {!isLoading &&
                         <p className="text-2xl mt-4">{`${weather.current.wind_speed_10m} ${windSpeed}`}</p>
@@ -59,7 +59,7 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
                 <div className="p-3 bg-(--neutral-800) rounded-lg border border-(--neutral-700) w-full">
                     <h3>Precipitation</h3>
                     {isLoading && 
-                        <span>-</span>
+                        <span className="inline-block pt-2 text-lg">-</span>
                     }
                     {!isLoading &&
                         <p className="text-2xl mt-4">{`${weather.current.precipitation} ${precipitation === "inch" ? "in" : "mm"}`}</p>
