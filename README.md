@@ -4,6 +4,8 @@
 
 Weather App from one of the challenges from frontEndMentor. Receive the current weather condition by simply inputting the name of any place you desire, together with hourly and daily conditions. It can also set up and record the desired metric that you wish to see.
 
+[Live Site](glp94.github.io/Weather-App/)
+
 ## Tools used
 
 1. HTML
