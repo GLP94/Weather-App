@@ -62,64 +62,73 @@ export default function Hourly({weather, getWeatherIcon, isLoading}){
                 >
                     <button 
                         onClick={() => setAppearance(prev => !prev)}
-                        className="p-2 flex justify-between items-center bg-(--neutral-600) rounded-lg w-25"
+                        className="p-2 flex justify-between items-center bg-(--neutral-600) rounded-lg w-32"
+                        aria-expanded={appearance}
+                        aria-haspopup="true"
                     >
                         {new Date(hours[Number(daySelected)]).toLocaleString("en-US", {weekday: "long"})} 
-                        <img className="h-4 w-4 ml-2" src={iconDropDown} />
+                        <img className="h-4 w-4 ml-2" src={iconDropDown} alt="Dropdown Icon" aria-hidden="true"/>
                     </button>
                     <ul 
                         className={`${appearance ? "flex" : "hidden"} p-2 mt-13 absolute z-2 bg-(--neutral-800) rounded-lg w-48 flex flex-col border border-(--neutral-700)`}
                     >
-                        <li className="w-full rounded-md p-2 hover:bg-(--neutral-700)">
-                            <button
-                                onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
-                                value="0"
-                            >
-                                {new Date(hours[0]).toLocaleString("en-US", {weekday: "long"})}
-                            </button>
+                        <li>
+                                <button
+                                    className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
+                                    onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
+                                    value="0"
+                                >
+                                    {new Date(hours[0]).toLocaleString("en-US", {weekday: "long"})}
+                                </button>
                         </li>
-                        <li className="w-full rounded-md p-2 hover:bg-(--neutral-700)">
+                        <li>
                             <button
+                                className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                                 onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
                                 value="24"
                             >
                                 {new Date(hours[24]).toLocaleString("en-US", {weekday: "long"})}
                             </button>
                         </li>
-                        <li className="w-full rounded-md p-2 hover:bg-(--neutral-700)">
+                        <li>
                             <button
+                                className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                                 onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
                                 value="48"
                             >
                                 {new Date(hours[48]).toLocaleString("en-US", {weekday: "long"})}
                             </button>
                         </li>
-                        <li className="w-full rounded-md p-2 hover:bg-(--neutral-700)">
+                        <li>
                             <button
+                                className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                                 onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
                                 value="72"
                             >
                                 {new Date(hours[72]).toLocaleString("en-US", {weekday: "long"})}
                             </button>
                         </li>
-                        <li className="w-full rounded-md p-2 hover:bg-(--neutral-700)">
+                        <li>
                             <button
+                                className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                                 onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
                                 value="96"
                             >
                                 {new Date(hours[96]).toLocaleString("en-US", {weekday: "long"})}
                             </button>
                         </li>
-                        <li className="w-full rounded-md p-2 hover:bg-(--neutral-700)">
+                        <li>
                             <button
+                                className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                                 onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
                                 value="120"
                             >
                                 {new Date(hours[120]).toLocaleString("en-US", {weekday: "long"})}
                             </button>
                         </li>
-                        <li className="w-full rounded-md p-2 hover:bg-(--neutral-700)">
+                        <li>
                             <button
+                                className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                                 onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
                                 value="144"
                             >

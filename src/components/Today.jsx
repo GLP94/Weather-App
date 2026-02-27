@@ -1,7 +1,7 @@
 export default function Today({ place, weather, isLoading, windSpeed, precipitation, getWeatherIcon}) {
 
     return (
-        <section>
+        <main>
             <div 
                 className={`${isLoading ? 'bg-(--neutral-800)' : "bg"} flex justify-center text-center flex-col my-4 font-[DM-Sans] rounded-4xl min-h-65`}
             >
@@ -66,7 +66,7 @@ export default function Today({ place, weather, isLoading, windSpeed, precipitat
                     }
                 </div>
             </div>
-        </section>
+        </main>
     )
 
 

@@ -105,6 +105,7 @@ export default function Search({setPlace, setNoResult, setWeather}){
                     <button 
                         className="py-3 px-4 bg-(--Blue-500) rounded-lg font-medium text-xl focus:outline-2 focus:outline-offset-3 focus:outline-(--Blue-500) hover:bg-(--Blue-700) "
                         type="submit"
+                        aria-haspopup="true"
                     >
                         Search
                     </button>
@@ -117,7 +118,7 @@ export default function Search({setPlace, setNoResult, setWeather}){
                     Search in Progress
                 </p>
             </div>}
-            {Array.isArray(result) && result.length > 0 &&
+            {(result && result.length > 0) &&
                 <div 
                     className="w-full bg-(--neutral-800) p-2 rounded-lg absolute border-(--neutral-700) z-1 md:max-w-140 md:left-12.5"
                     ref={menuRef}
@@ -125,8 +126,8 @@ export default function Search({setPlace, setNoResult, setWeather}){
                     <ul>
                         {result.map(p => (
                             <li 
-                                key={p.id} 
-                                className="p-2 hover:bg-(--neutral-700) border border-(--neutral-800) hover:border hover:border-(--neutral-600) active:border active:bg-(--neutral-700) active:border-(--neutral-600) rounded-lg cursor-pointer"
+                                key={p.id}  
+                                className="p-2 border border-(--neutral-800) focus:outline-2  focus:outline-white hover:bg-(--neutral-700) active:border active:bg-(--neutral-700) active:border-(--neutral-600) rounded-lg cursor-pointer"
                                 onClick={() => {setPlace(p); setResult(null); setCityName("")}}
                                 tabIndex="0"
                             >
