@@ -33,11 +33,11 @@ export default function App() {
     if (!place) return;
 
     const fetchWorker = async () => {
-      let { latitude, longitude } = place;
+      const { latitude, longitude } = place;
       setIsLoading(true);
       setWeather(null);
 
-      let url = "https://api.open-meteo.com/v1/forecast?"
+      const url = "https://api.open-meteo.com/v1/forecast?"
         + `&latitude=${latitude}`
         + `&longitude=${longitude}`
         + `&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m`
@@ -50,8 +50,8 @@ export default function App() {
         + `&precipitation_unit=${precipitation}`
 
       try {
-        let response = await fetch(url)
-        let data = await response.json();
+        const response = await fetch(url)
+        const data = await response.json();
         setWeather(data);
       }
       catch (err) {
@@ -60,28 +60,27 @@ export default function App() {
       finally{
         setIsLoading(false)
       }
-      
     }
 
     fetchWorker();
 
   }, [precipitation, temperature, windSpeed, place])
 
+  const weatherCodes = new Map([
+    [0, sunny],
+    [1, partlyCloudy], [2, partlyCloudy],
+    [3, overcast],
+    [45, fog], [48, fog],
+    [56, rain], [57, rain], [61, rain], [63, rain],
+    [65, rain], [66, rain], [67, rain], [80, rain],
+    [81, rain], [82, rain],
+    [71, snow], [73, snow], [75, snow], [77, snow],
+    [85, snow], [86, snow],
+    [95, storm], [96, storm], [99, storm]
+  ])
+
   function getWeatherIcon(code) {
-    const values = {
-      sunny: [0],
-      partlyCloudy: [1, 2],
-      overcast: [3],
-      fog: [45, 48],
-      rain: [56, 57, 61, 63, 65, 66, 67, 80, 81, 82],
-      snow: [71, 73, 75, 77, 85, 86],
-      storm: [95, 96, 99]
-    };
-
-    const icons = { sunny, partlyCloudy, overcast, fog, rain, snow, storm };
-    const iconName = Object.keys(values).find((key) => values[key].includes(code));
-
-    return icons[iconName];
+    return weatherCodes.get(code) || sunny;
   }
 
   return (

@@ -27,15 +27,16 @@
     --Blue-700: hsl(248, 70%, 36%);
 }
 
-*, ::before, ::after{
+*,
+::before,
+::after{
     box-sizing: border-box;
 }
 
 .scrollbar{
-
     &::-webkit-scrollbar{
-        background-color: none;
-        width: 5px;
+        background-color: transparent;
+        width: 0.313em;
     }
 
     &::-webkit-scrollbar-thumb{
@@ -45,11 +46,11 @@
 }
 
 body{
-    font-family: "DM-Sans", "sans-serif";
+    font-family: "DM-Sans", sans-serif;
 }
 
 h1{
-    font-family: "Bricolage-Grotesque", "sans-serif" !important
+    font-family: "Bricolage-Grotesque", sans-serif;
 }
 
 .spin{
@@ -79,7 +80,7 @@ h1{
     background-position: center;
 }
 
-@media (min-width: 344px) {
+@media (min-width: 21.5em) {
     .bg{
         background-image: url("./assets/bg-today-large.svg");
     }
@@ -101,5 +102,25 @@ h1{
 
     50%{
         transform: translateY(-100px)
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .spin{
+        animation: spin 10s infinite linear;
+    }
+
+    .bounce{
+        animation: pulse 5s ease-in-out infinite;
     }
 }

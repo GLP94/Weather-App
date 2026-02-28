@@ -70,7 +70,8 @@ export default function Search({setPlace, setNoResult, setWeather}){
                     </img>
                     <h1 className="text-4xl mt-8">Something went wrong</h1>
                     <p className="py-4">We couldn't connect to the server (API error). Please try again in a few moments.</p>
-                    <button 
+                    <button
+                        type="button"
                         onClick={handleError} 
                         className="flex focus:outline-2 bg-(--neutral-800) py-2 px-4 focus:outline-offset-3 focus:outline-white hover:bg-(--neutral-700) rounded-lg"
                     >

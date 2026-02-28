@@ -9,9 +9,9 @@ export default function Hourly({weather, getWeatherIcon, isLoading}){
     const [appearance, setAppearance] = useState(false);
     const [daySelected, setDaySelected] = useState("");
 
-    let hours = weather.hourly.time;
-    let codes = weather.hourly.weather_code;
-    let temperatures = weather.hourly.temperature_2m;
+    const hours = weather.hourly.time;
+    const codes = weather.hourly.weather_code;
+    const temperatures = weather.hourly.temperature_2m;
 
     let menuRef = useRef(null)
 
@@ -60,7 +60,8 @@ export default function Hourly({weather, getWeatherIcon, isLoading}){
                     ref={menuRef}
                     onBlur={handleOnBlur}
                 >
-                    <button 
+                    <button
+                        type="button"
                         onClick={() => setAppearance(prev => !prev)}
                         className="p-2 flex justify-between items-center bg-(--neutral-600) rounded-lg w-32"
                         aria-expanded={appearance}
@@ -74,6 +75,7 @@ export default function Hourly({weather, getWeatherIcon, isLoading}){
                     >
                         <li>
                                 <button
+                                    type="button"
                                     className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                                     onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
                                     value="0"
@@ -83,6 +85,7 @@ export default function Hourly({weather, getWeatherIcon, isLoading}){
                         </li>
                         <li>
                             <button
+                                type="button"
                                 className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                                 onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
                                 value="24"
@@ -92,6 +95,7 @@ export default function Hourly({weather, getWeatherIcon, isLoading}){
                         </li>
                         <li>
                             <button
+                                type="button"
                                 className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                                 onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
                                 value="48"
@@ -101,6 +105,7 @@ export default function Hourly({weather, getWeatherIcon, isLoading}){
                         </li>
                         <li>
                             <button
+                                type="button"
                                 className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                                 onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
                                 value="72"
@@ -110,6 +115,7 @@ export default function Hourly({weather, getWeatherIcon, isLoading}){
                         </li>
                         <li>
                             <button
+                                type="button"
                                 className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                                 onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
                                 value="96"
@@ -119,6 +125,7 @@ export default function Hourly({weather, getWeatherIcon, isLoading}){
                         </li>
                         <li>
                             <button
+                                type="button"
                                 className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                                 onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
                                 value="120"
@@ -128,6 +135,7 @@ export default function Hourly({weather, getWeatherIcon, isLoading}){
                         </li>
                         <li>
                             <button
+                                type="button"
                                 className="w-full text-left rounded-md p-2 hover:bg-(--neutral-700)"
                                 onClick={(event) => {setAppearance(prev => !prev); setDaySelected(event.currentTarget.value)}}
                                 value="144"
